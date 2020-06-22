@@ -14,6 +14,7 @@
 <form action="/authorization" method="post">
     Name:<input type="text" name="email"><br>
     Password:<input type="password" name="password"><br>
+    <input type="hidden" name="roll" value="EMPLOYEE_ROLE">
     <input type="submit" value="login">
 </form>
 </body>

@@ -37,6 +37,13 @@ public class CookieController {
                 }
             }
         }
+        clearCache(response);
+    }
+
+    private static void clearCache(HttpServletResponse response) {
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+        response.setDateHeader("Expires", 0);
     }
 
     public static void IsUserLoggedIn(UserLoginResponse userObject,HttpServletRequest request, HttpServletResponse response) {

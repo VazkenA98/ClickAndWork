@@ -8,13 +8,19 @@ public class LoginDao {
 
     public UserLoginResponse checkUserInput(LoginModel loginModel) {
         System.out.println(loginModel.getPassword() + " " + loginModel.getUsername());
-        return new UserLoginResponse.UserLoginResponseBuilder()
-                .firstName("6-20-2020")
-                .lastName("skhayalian@gmail.com")
-                .id(12)
-                .role(new Role("EMPLOYEE_ROLE"))
-                .build();
+        UserLoginResponse userLoginResponse = null;
+        if(loginModel.getRoll().equals("EMPLOYEE_ROLE")){
+            // access employee query
+            userLoginResponse = EmployeeDAO.checkEmployeeInput(loginModel);
+        }else if(loginModel.getRoll().equals("BUSINESS_ROLE")){
+            // access business query
+            userLoginResponse = BusinessDAO.checkBusinessInput(loginModel);
+        }else{
+
+        }
+        return userLoginResponse;
     }
+
 
     public UserLoginResponse getUserObject(LoginModel loginModel) {
         return null;
