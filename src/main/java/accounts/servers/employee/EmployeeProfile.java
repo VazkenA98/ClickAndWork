@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/EmployeeProfile")
+@WebServlet("/user/profile")
 public class EmployeeProfile extends BaseURL {
     private Employee employee = new Employee(new Employee.EmployeeBuilder());
     private EmployeeService employeeService = new EmployeeServiceImpl();
@@ -19,26 +19,37 @@ public class EmployeeProfile extends BaseURL {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.service(req, resp);
-        setUpProfile(req, resp);
+        if (UserLoggedIn(req,resp)){
+            System.out.println();
+            setUpProfile(req, resp);
+        }else{
+            gotoLoginPage(req,resp);
+        }
     }
 
+    private void gotoLoginPage(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.sendRedirect("/login");
+    }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        super.doPost(request, response);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        super.doGet(request, response);
     }
+
     private void setUpProfile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         getUserProfileInformation(request,response);
-        response.sendRedirect("/accounts/employee.jsp");
+        String url = request.getServletPath() + "/employee.jsp";
+        response.sendRedirect(url);
 
     }
 
     private void getUserProfileInformation(HttpServletRequest request, HttpServletResponse response) {
-        int id = (int) request.getAttribute("id");
-        employee = employeeService.getEmployeeData(id);
+        employee = employeeService.getEmployeeData(1);
     }
     
 }

@@ -13,31 +13,25 @@ import loginaction.model.responselogin.UserLoginResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/authorization")
-public class UserAuthorization extends BaseURL {
+public class UserAuthorization extends HttpServlet {
     private LoginModel loginModel = new LoginModel(new LoginModel.LoginModelBuilder());
     private UserLoginResponse userObject = new UserLoginResponse(new UserLoginResponse.UserLoginResponseBuilder());
     private LoginServiceImpl loginService = new LoginServiceImpl();
 
-
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.service(req, resp);
-        userAuthorization(req, resp);
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
+        userAuthorization(request,response);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doGet(request, response);
+        userAuthorization(request,response);
     }
 
     private void userAuthorization(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -58,16 +52,12 @@ public class UserAuthorization extends BaseURL {
     }
 
     private void redirectAccountDashboard(UserLoginResponse userObject, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RequestDispatcher rd = null;
+        response.getStatus();
+
         if (userObject.getRole().getRole().equals("EMPLOYEE_ROLE")) {
-            request.setAttribute("id",userObject.getId());
-            rd = request.getRequestDispatcher("EmployeeProfile");
-            rd.forward(request,response);
+            response.sendRedirect("/user/profile");
         } else if (userObject.getRole().getRole().equals("BUSINESS_ROLE")) {
-            request.setAttribute("id",userObject.getId());
-            rd = request.getRequestDispatcher("BusinessProfile");
-            rd.forward(request,response);
-            //response.sendRedirect("/accounts/business.jsp");
+
         } else {
 
         }
