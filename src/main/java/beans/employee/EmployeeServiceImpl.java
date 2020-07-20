@@ -1,3 +1,4 @@
+
 package beans.employee;
 
 import dao.EmployeeDAO;
@@ -12,3 +13,4 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeDAO.getEmployeeData(id);
     }
 }
+

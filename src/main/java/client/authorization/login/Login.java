@@ -1,10 +1,14 @@
 package client.authorization.login;
 
 import baseurl.BaseURL;
+import beans.employee.EmployeeService;
+import dao.AdminDAO;
+import dao.EmployeeDAO;
+import dao.Services.EmployeeDaoService;
+import hibernate.entity.Admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -38,7 +42,15 @@ public class Login extends BaseURL {
     }
 
     private void gotoLoginPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String url = "/user/profile";
+        /*String url = "/user/profile";
+        response.sendRedirect(url);*/
+        System.out.println("going to hibernate dao");
+        EmployeeDaoService service = new EmployeeDaoService();
+        System.out.println(service.findById(1));
+
+       // AdminDAO.getAllAdminInfo();
+
+        String url = request.getServletPath()+"/";
         response.sendRedirect(url);
     }
 }

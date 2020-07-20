@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="523aea72-eb28-4dbc-ba7b-7dbab57d9787">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+D:/ClickAndWork/src/main/java/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/mydb?useSSL=false&amp;serverTimezone=UTC</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="resources:hibernate.cfg.xml/Hibernate" uuid="957ad021-cd62-4072-806f-97fa085af1d9">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+D:/ClickAndWork/src/main/java/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/mydb?useSSL=false&amp;serverTimezone=UTC</jdbc-url>
+    </data-source>
+  </component>
+</project>
